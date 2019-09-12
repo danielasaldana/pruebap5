@@ -1,28 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>audio_viz_0</title>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
-	<script type="text/javascript" src="sketch.js"></script>
+var song;
+var amp;
+var button;
 
-	<style>
-		body {
-			margin:0;
-			padding:0;
-			overflow: hidden;
-		}
-		canvas {
-			margin:auto;
-		}
-	</style>
-</head>
-<body>
-</body>
-</html>
+var volhistory = [];
+
+function toggleSong() {
+  if (song.isPlaying()) {
+    song.pause();
+  } else {
+    song.play();
+  }
+}
+
+function preload() {
+  song = loadSound('this-dot-kp.mp3');
+}
+
+function setup() {
+  createCanvas(200, 200);
+  angleMode(DEGREES);
+  button = createButton('toggle');
+  button.mousePressed(toggleSong);
+  song.play();
+  amp = new p5.Amplitude();
+}
+
+function draw() {
+  background(0);
+  var vol = amp.getLevel();
+  volhistory.push(vol);
+  stroke(255);
+  noFill();
+
+  translate(width / 2, height / 2);
+  beginShape();
+  for (var i = 0; i < 360; i++) {
+    var r = map(volhistory[i], 0, 1, 10, 100);
+    var x = r * cos(i);
+    var y = r * sin(i);
+    vertex(x, y);
+  }
+  endShape();
+
+  if (volhistory.length > 360) {
+    volhistory.splice(0, 1);
+  }
+  //ellipse(100, 100, 200, vol * 200);
+}
