@@ -1,4 +1,5 @@
-id,species,name
-0,Capra hircus,Goat
-1,Panthera pardus,Leopard
-2,Equus zebra,Zebra
+nombre,conocimiento,orden,trato
+dada,5.0,2.5,65
+bubu,6.0,6.3,70
+lala,64,62,63
+tata,54,56,52,53
