@@ -29,11 +29,17 @@ nav ul li{
 	display:inline-block;
 }
 
-div#frase{
+#frase{
 	position:absolute;
 	top:25%;
 	left:25%;
 	width:50%;
 	height:50%;
 	text-align: left;	
+}
+
+select#horoscopo{
+	position: fixed;
+	bottom:20px;
+	left:20px;
 }
