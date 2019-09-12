@@ -1,19 +1,27 @@
     
 function setup() {
-  noCanvas();
-}
-
-function cambia(){
-	var nombre = document.getElementById("nombre").value;
-	var edad = document.getElementById("edad").value;
-	var signo = document.getElementById("signo").value;
-	var tamaño;
-	if (edad <12 || edad > 60){
-		tamaño = "xx-large"; 
-	} else { 
-		tamaño = "large"}
+  var canvas = createCanvas(windowWidth,windowHeight);
+  canvas.position(0,0);
+  canvas.style('z-index', -1);
+  colorMode(HSB,360,100,100);
+  var r = random(0,360)
+  background(r,100,100);
 
 }
-document.getElementById("dirigido").innerText=nombre + ",";
-document.getElementById("frase").style.fontSize= tamaño ; 
-document.body.style.backgroundColor = signo;
+
+function draw(){
+	inventada(random(1, 100));
+}
+function inventada(diametro){
+	stroke(r,100,100);
+	colorMode(RGB);
+	fill(255,100);
+	ellipse(mouseX, mouseY, diametro, diametro);
+}
+
+function pedrito(){
+	var adjetivo = document.getElementById("horoscopo").value;
+	document.getElementById("cambia").innerText = adjetivo;
+	alert("Pero con respeto");
+}
+
