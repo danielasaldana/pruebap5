@@ -24,6 +24,5 @@ function inventada(diametro){
 function pedrito(){
 	var adjetivo = document.getElementById("horoscopo").value;
 	document.getElementById("cambia").innerText = adjetivo;
-	alert("Pero con respeto");
 }
 
